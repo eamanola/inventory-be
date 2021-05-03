@@ -1,7 +1,7 @@
 const combine = (categoryData, manufacturersData) => {
   const ret = categoryData.map((item) => {
     const manufacturerInfo = manufacturersData[item.manufacturer]
-      .find((i) => i.id === item.id);
+      .find((i) => i.id.toUpperCase() === item.id.toUpperCase());
 
     return { ...item, manufacturerInfo };
   });
@@ -12,12 +12,16 @@ const combine = (categoryData, manufacturersData) => {
 const filterByManufacturerInfo = (data) => data.filter((item) => item.manufacturerInfo);
 
 const parseAvailability = (data) => data.map((item) => {
+  // 'INSTOCK', 'OUTOFSTOCK', 'LESSTHAN10'
   let availability = 'UNKNOWN';
-  const { DATAPAYLOAD } = item.manufacturerInfo;
-  if (DATAPAYLOAD) {
-    const match = DATAPAYLOAD.match(/<INSTOCKVALUE>(.*)<\/INSTOCKVALUE>/);
-    if (match != null) {
-      [, availability] = match;
+
+  if (item.manufacturerInfo) {
+    const { DATAPAYLOAD } = item.manufacturerInfo;
+    if (DATAPAYLOAD) {
+      const match = DATAPAYLOAD.match(/<INSTOCKVALUE>(.*)<\/INSTOCKVALUE>/);
+      if (match != null) {
+        [, availability] = match;
+      }
     }
   }
 

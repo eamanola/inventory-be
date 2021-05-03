@@ -1,4 +1,4 @@
-const CACHE_FOR = 5 * 60 * 60 * 1000;
+const CACHE_FOR = 5 * 60 * 1000;
 
 const cache = {};
 

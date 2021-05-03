@@ -5,7 +5,6 @@ const app = express();
 
 const fetchData = require('./fetch');
 const formatData = require('./format');
-const cache = require('./cache');
 
 app.use(cors());
 app.use(express.json());
@@ -20,21 +19,13 @@ app.get('/category/:category', async (request, response) => {
     });
   }
 
-  let data = cache.get(category);
-  if (data === null) {
-    const [categoryData, manufacturersData] = await fetchData(category);
-    data = formatData(categoryData, manufacturersData);
-    cache.set(category, data);
-
-    console.log('server');
-  } else {
-    console.log('cache');
-  }
-
+  const [categoryData, manufacturersData] = await fetchData(category);
+  const data = formatData(categoryData, manufacturersData);
   return response.status(200).json({ data });
 });
 
 const PORT = 3002;
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server running on port ${PORT}`);
 });
