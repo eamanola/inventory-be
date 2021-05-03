@@ -2,11 +2,13 @@ const axios = require('axios');
 
 const cache = require('./cache');
 
+const IS_DEV = process.env.NODE_ENV === 'development';
+
 let baseUrl = 'https://bad-api-assignment.reaktor.com';
 let categoriesEP = `${baseUrl}/v2/products`;
 let manufacturerEP = `${baseUrl}/v2/availability`;
 
-if (process.env.NODE_ENV === 'development') {
+if (IS_DEV) {
   baseUrl = 'http://localhost:3001';
   categoriesEP = baseUrl;
   manufacturerEP = baseUrl;
@@ -29,16 +31,15 @@ const fetchCategory = async (category) => {
   return data;
 };
 
-const manufacturersList = (categoryData) => {
-  const manufacturers = categoryData.map((item) => item.manufacturer);
-  return [...new Set(manufacturers)];
-};
+const manufacturers = (categoryData) => [
+  ...new Set(categoryData.map((item) => item.manufacturer)),
+];
 
-const fetchManufacturers = async (manufacturers) => {
+const fetchManufacturers = async (manufacturersList) => {
   const data = {};
   const promises = [];
 
-  manufacturers.forEach((manufacturer) => {
+  manufacturersList.forEach((manufacturer) => {
     const manufacturerData = cache.get(manufacturer);
     if (manufacturerData === null) {
       promises.push(axios.get(`${manufacturerEP}/${manufacturer}`));
@@ -54,14 +55,21 @@ const fetchManufacturers = async (manufacturers) => {
   });
 
   const responses = await Promise.all(promises);
-
   responses.forEach((response) => {
     const { url } = response.config;
     const manufacturer = url.split('/').pop();
-    const manufacturerData = response.data;
+    const manufacturerData = IS_DEV ? response.data : response.data.response;
 
-    data[manufacturer] = manufacturerData;
-    cache.set(manufacturer, manufacturerData);
+    if (manufacturerData instanceof Array) {
+      data[manufacturer] = manufacturerData;
+      cache.set(manufacturer, manufacturerData);
+    } else {
+      // TODO: handle Network error, with 200 status
+      // retry? / try again later?
+      // eslint-disable-next-line no-console
+      console.log('Err:', manufacturer, manufacturerData);
+      data[manufacturer] = [];
+    }
   });
 
   return data;
@@ -69,8 +77,8 @@ const fetchManufacturers = async (manufacturers) => {
 
 const fetchData = async (category) => {
   const categoryData = await fetchCategory(category);
-  const manufacturers = manufacturersList(categoryData);
-  const manufacturersData = await fetchManufacturers(manufacturers);
+  const manufacturersList = manufacturers(categoryData);
+  const manufacturersData = await fetchManufacturers(manufacturersList);
 
   return [categoryData, manufacturersData];
 };
