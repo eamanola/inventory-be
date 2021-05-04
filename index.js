@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 
-const app = express();
-
 const fetchData = require('./fetch');
 const formatData = require('./format');
+const config = require('./config');
+
+const app = express();
 
 app.use(cors());
 app.use(express.json());
@@ -25,8 +26,8 @@ app.get('/category/:category', async (request, response) => {
   return response.status(200).json(data);
 });
 
-const PORT = 3002;
-app.listen(PORT, () => {
+const { PORT } = config;
+app.listen(config.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Server running on port ${PORT}`);
 });

@@ -16,9 +16,12 @@ const AVAILABILITY_EP = `${BASE_URL}${IS_DEV
 
 const MAX_TRIES = 2;
 
+const PORT = process.env.PORT || 3002;
+
 module.exports = {
   IS_DEV,
   CATEGORIES_EP,
   AVAILABILITY_EP,
   MAX_TRIES,
+  PORT,
 };
