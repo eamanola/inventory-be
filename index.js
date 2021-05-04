@@ -8,6 +8,7 @@ const formatData = require('./format');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('inventory-fe/build'));
 
 app.get('/category/:category', async (request, response) => {
   const { category } = request.params;

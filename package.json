@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest .",
     "dev": "NODE_ENV=development nodemon index.js",
-    "server": "json-server -p3001 --watch db.json"
+    "server": "json-server -p3001 --watch db.json",
+    "build:ui": "cd inventory-fe && rm -rf build; git pull && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",

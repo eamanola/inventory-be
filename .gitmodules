@@ -1,0 +1,3 @@
+[submodule "inventory-fe"]
+	path = inventory-fe
+	url = ../inventory-fe/
