@@ -14,8 +14,11 @@ const AVAILABILITY_EP = `${BASE_URL}${IS_DEV
   ? process.env.AVAILABILITY_EP_DEV
   : process.env.AVAILABILITY_EP}`;
 
+const MAX_TRIES = 2;
+
 module.exports = {
   IS_DEV,
   CATEGORIES_EP,
   AVAILABILITY_EP,
+  MAX_TRIES,
 };
