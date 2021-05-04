@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest .",
     "dev": "NODE_ENV=development nodemon index.js",
+    "start": "node index.js",
     "server": "json-server -p3001 --watch db.json",
     "build:ui": "cd inventory-fe && rm -rf build; git pull origin master && npm install && npm run build"
   },
