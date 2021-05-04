@@ -8,7 +8,7 @@ const {
   MAX_TRIES,
 } = require('./config');
 
-const forceError = false;
+const forceError = IS_DEV && false;
 const headers = forceError ? { 'x-force-error-mode': 'allto' } : {};
 
 const fetchCategory = async (category) => {
