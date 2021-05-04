@@ -1,23 +1,12 @@
 const axios = require('axios');
 
 const cache = require('./cache');
-
-const IS_DEV = process.env.NODE_ENV === 'development';
-
-let baseUrl = 'https://bad-api-assignment.reaktor.com';
-let categoriesEP = `${baseUrl}/v2/products`;
-let manufacturerEP = `${baseUrl}/v2/availability`;
-
-if (IS_DEV) {
-  baseUrl = 'http://localhost:3001';
-  categoriesEP = baseUrl;
-  manufacturerEP = baseUrl;
-}
+const { IS_DEV, CATEGORIES_EP, AVAILABILITY_EP } = require('./config');
 
 const fetchCategory = async (category) => {
   let data = cache.get(category);
   if (data === null) {
-    const response = await axios.get(`${categoriesEP}/${category}`);
+    const response = await axios.get(`${CATEGORIES_EP}/${category}`);
     data = response.data;
     cache.set(category, data);
 
@@ -42,7 +31,7 @@ const fetchManufacturers = async (manufacturersList) => {
   manufacturersList.forEach((manufacturer) => {
     const manufacturerData = cache.get(manufacturer);
     if (manufacturerData === null) {
-      promises.push(axios.get(`${manufacturerEP}/${manufacturer}`));
+      promises.push(axios.get(`${AVAILABILITY_EP}/${manufacturer}`));
 
       // eslint-disable-next-line no-console
       console.log(manufacturer, 'from server');

@@ -21,7 +21,7 @@ app.get('/category/:category', async (request, response) => {
 
   const [categoryData, manufacturersData] = await fetchData(category);
   const data = formatData(categoryData, manufacturersData);
-  return response.status(200).json({ data });
+  return response.status(200).json(data);
 });
 
 const PORT = 3002;
