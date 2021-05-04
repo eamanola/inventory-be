@@ -24,13 +24,12 @@ app.get('/category/:category', async (request, response) => {
   }
 
   try {
-    console.log('start fetch');
     const [categoryData, manufacturersData] = await fetchData(category);
     const data = formatData(categoryData, manufacturersData);
     response.status(200).json(data);
   } catch (e) {
     console.log(e);
-    response.status(500).json({ error: e });
+    response.status(500).json({ error: "unknown" });
   }
 });
 

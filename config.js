@@ -14,7 +14,7 @@ const AVAILABILITY_EP = `${BASE_URL}${IS_DEV
   ? process.env.AVAILABILITY_EP_DEV
   : process.env.AVAILABILITY_EP}`;
 
-const MAX_TRIES = 2;
+const MAX_TRIES = process.env.MAX_TRIES || 1;
 
 const PORT = process.env.PORT || 3002;
 
