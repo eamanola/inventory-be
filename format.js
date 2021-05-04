@@ -35,11 +35,9 @@ const formatData = (categoryData, manufacturersData) => {
 
   return data.map((item) => ({
     id: item.id,
-    type: item.type,
     name: item.name,
     manufacturer: item.manufacturer,
     availability: item.availability,
-    debug: { ...item },
   }));
 };
 

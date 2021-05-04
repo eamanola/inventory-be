@@ -12,7 +12,6 @@ const forceError = IS_DEV && false;
 const headers = forceError ? { 'x-force-error-mode': 'allto' } : {};
 
 const fetchCategory = async (category) => {
-  console.log('fetchCategory', category)
   let data = cache.get(category);
   if (data === null) {
     const response = await axios.get(`${CATEGORIES_EP}/${category}`, {
@@ -32,7 +31,6 @@ const fetchCategory = async (category) => {
 };
 
 const manufacturersFromCache = (manufacturersList) => {
-  console.log('manufacturersFromCache', manufacturersList)
   const data = {};
   const notFound = [];
   manufacturersList.forEach((manufacturer) => {
@@ -50,7 +48,6 @@ const manufacturersFromCache = (manufacturersList) => {
 };
 
 const manufacturersFromServer = async (manufacturersList) => {
-  console.log('manufacturersFromServer', manufacturersList)
   const data = {};
   const fails = [];
 
@@ -81,7 +78,6 @@ const manufacturersFromServer = async (manufacturersList) => {
 };
 
 const fetchManufacturers = async (manufacturersList, retries = MAX_TRIES) => {
-  console.log('fetchManufacturers', manufacturersList, retries)
   let data = {};
 
   const [fromCache, notFound] = manufacturersFromCache(manufacturersList);
@@ -111,7 +107,6 @@ const fetchManufacturers = async (manufacturersList, retries = MAX_TRIES) => {
 };
 
 const fetchData = async (category) => {
-  console.log('fetchData', category)
   const categoryData = await fetchCategory(category);
 
   const manufacturers = [

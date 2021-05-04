@@ -28,8 +28,9 @@ app.get('/category/:category', async (request, response) => {
     const data = formatData(categoryData, manufacturersData);
     response.status(200).json(data);
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
-    response.status(500).json({ error: "unknown" });
+    response.status(500).json({ error: 'unknown' });
   }
 });
 
