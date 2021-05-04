@@ -34,7 +34,6 @@ const formatData = (categoryData, manufacturersData) => {
   data = parseAvailability(data);
 
   return data.map((item) => ({
-    id: item.id,
     name: item.name,
     manufacturer: item.manufacturer,
     availability: item.availability,
