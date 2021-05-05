@@ -30,7 +30,7 @@ app.get('/category/:category', async (request, response) => {
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(e);
-    response.status(500).json({ error: 'unknown' });
+    response.status(500).json({ error: 'Something went wrong. Please try again later' });
   }
 });
 
