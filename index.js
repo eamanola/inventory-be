@@ -24,9 +24,9 @@ app.get('/category/:category', async (request, response) => {
   }
 
   try {
-    const [categoryData, manufacturersData] = await fetchData(category);
+    const [categoryData, manufacturersData, fails] = await fetchData(category);
     const data = formatData(categoryData, manufacturersData);
-    response.status(200).json(data);
+    response.status(200).json({ data, fails });
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(e);

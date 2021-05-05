@@ -103,7 +103,7 @@ const fetchManufacturers = async (manufacturersList, retries = MAX_TRIES) => {
     }
   }
 
-  return data;
+  return [data, fails];
 };
 
 const fetchData = async (category) => {
@@ -112,9 +112,9 @@ const fetchData = async (category) => {
   const manufacturers = [
     ...new Set(categoryData.map((item) => item.manufacturer)),
   ];
-  const manufacturersData = await fetchManufacturers(manufacturers);
+  const [manufacturersData, fails] = await fetchManufacturers(manufacturers);
 
-  return [categoryData, manufacturersData];
+  return [categoryData, manufacturersData, fails];
 };
 
 module.exports = fetchData;
