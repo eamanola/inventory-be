@@ -8,4 +8,4 @@ Front-end done with react. Front end code in the submodule.
 
 Live demo at https://inventory-fs.herokuapp.com/
 
-Expect some timeouts, in the live demo, and page refreshes =). Every timeout manages to fill some of the necessary cache, and one or two refreshes should be enough to get the app started :D
+The 3rd party has a random error generator built in. If you see the message manufacturer X could not be reached, just click refresh.
