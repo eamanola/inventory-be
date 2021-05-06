@@ -97,7 +97,7 @@ const fetchManufacturers = async (manufacturersList, retries = MAX_TRIES) => {
       fails.forEach((manufacturer) => {
         // no can do, try again later :/
         // eslint-disable-next-line no-console
-        console.log(`${manufacturer} couldnt recover in ${MAX_TRIES} tries`);
+        console.log(`${manufacturer} couldnt recover in ${MAX_TRIES} retries`);
         data[manufacturer] = [];
       });
     }
