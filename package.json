@@ -10,7 +10,7 @@
     "server": "json-server -p3001 --watch db.json",
     "ui:update": "rm -rf inventory; git submodule update --init inventory-fe",
     "ui:build": "npm install --prefix ./inventory-fe && npm run build --prefix ./inventory-fe",
-    "heroku-prebuild": "npm run build:ui"
+    "heroku-postbuild": "npm run build:ui"
 
   },
   "author": "",
