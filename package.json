@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=development nodemon index.js",
     "start": "node index.js",
     "server": "json-server -p3001 --watch db.json",
-    "build:ui": "cd inventory-fe && git pull origin master && npm install && npm run build",
+    "build:ui": "git pull origin master --recurse-submodules && cd inventory-fe && npm install && npm run build",
     "postinstall": "npm run build:ui"
   },
   "author": "",
