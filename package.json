@@ -8,8 +8,7 @@
     "dev": "NODE_ENV=development nodemon index.js",
     "start": "node index.js",
     "server": "json-server -p3001 --watch db.json",
-    "build:ui": "rm -rf fe-build; cd inventory-fe && git pull origin master && npm install && npm run build && mv build ../fe-build",
-    "heroku-postbuild": "git clone git@github.com:eamanola/inventory-fe.git && ls ./inventory-fe; echo '---'; ls ./ui"
+    "build:ui": "rm -rf fe-build; cd inventory-fe && git pull origin master && npm install && npm run build && mv build ../fe-build"
   },
   "author": "",
   "license": "ISC",
