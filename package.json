@@ -8,9 +8,7 @@
     "dev": "NODE_ENV=development nodemon index.js",
     "start": "node index.js",
     "server": "json-server -p3001 --watch db.json",
-    "build:ui": "cd inventory-fe && npm install && npm run build && mv build ../fe-build",
-    "fetch:ui": "git submodule update --recursive --remote && echo 'fe fetched'",
-    "heroku-postbuild": "npm run build:ui"
+    "build:ui": "rm -rf fe-build; cd inventory-fe && git pull origin master && npm install && npm run build && mv build ../fe-build"
   },
   "author": "",
   "license": "ISC",
