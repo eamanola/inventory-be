@@ -9,7 +9,7 @@
     "start": "node index.js",
     "server": "json-server -p3001 --watch db.json",
     "build:ui": "rm -rf fe-build; cd inventory-fe && git pull origin master && npm install && npm run build && mv build ../fe-build",
-    "heroku-postbuild": "git submodule update inventory-fe && npm install --prefix ./inventory-fe && npm run build --prefix ./inventory-fe"
+    "heroku-postbuild": "git submodule update --init --recursive && npm install --prefix ./inventory-fe && npm run build --prefix ./inventory-fe"
   },
   "author": "",
   "license": "ISC",
