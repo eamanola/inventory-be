@@ -9,7 +9,7 @@
     "start": "node index.js",
     "server": "json-server -p3001 --watch db.json",
     "build:ui": "rm -rf fe-build; cd inventory-fe && git pull origin master && npm install && npm run build && mv build ../fe-build",
-    "heroku-postbuild": "ls; echo '---'; ls ./inventory-fe; echo '---'; ls ./ui"
+    "heroku-postbuild": "git@github.com:eamanola/inventory-fe.git && ls ./inventory-fe; echo '---'; ls ./ui"
   },
   "author": "",
   "license": "ISC",
