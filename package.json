@@ -9,8 +9,8 @@
     "start": "node index.js",
     "server": "json-server -p3001 --watch db.json",
     "update:ui": "git submodule update inventory-fe",
-    "build:ui": "rm -rf fe-build; cd inventory-fe && npm install && npm run build && mv build ../fe-build && echo 'ui built'",
-    "heroku-postbuild": "ls; npm run build:ui"
+    "build:ui": "cd inventory-fe && npm install && npm run build && ls && echo 'ui built'",
+    "heroku-postbuild": "npm run build:ui && ls inventory-fe"
   },
   "author": "",
   "license": "ISC",
