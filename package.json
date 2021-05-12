@@ -10,7 +10,8 @@
     "server": "json-server -p3001 --watch db.json",
     "ui:update": "rm -rf inventory-fe; git submodule update --init inventory-fe",
     "ui:build": "npm install --prefix ./inventory-fe && npm run build --prefix ./inventory-fe",
-    "ui:heroku": "npm run ui:update && npm run ui:build && rm -rf fe-build; cp -R ./inventory-fe/build fe-build"
+    "heroku-prebuild": "npm run ui:build",
+    "deploy:heroku": "git push heroku herokutest:master"
   },
   "author": "",
   "license": "ISC",

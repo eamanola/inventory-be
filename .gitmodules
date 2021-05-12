@@ -1,3 +1,4 @@
 [submodule "inventory-fe"]
 	path = inventory-fe
 	url = git@github.com:eamanola/inventory-fe.git
+	branch = heroku
