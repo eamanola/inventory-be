@@ -11,7 +11,7 @@
     "ui:update": "rm -rf inventory-fe; git submodule update --init inventory-fe",
     "ui:build": "npm install --prefix ./inventory-fe && npm run build --prefix ./inventory-fe",
     "heroku-prebuild": "npm run ui:build",
-    "deploy:heroku": "git push heroku herokutest:master"
+    "deploy:heroku": "git push heroku master"
   },
   "author": "",
   "license": "ISC",
