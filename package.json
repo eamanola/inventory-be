@@ -9,9 +9,9 @@
     "start": "node index.js",
     "server": "json-server -p3001 --watch db.json",
     "ui:update": "rm -rf inventory-fe; git submodule update --init inventory-fe",
-    "ui:build": "npm install --prefix ./inventory-fe && npm run build --prefix ./inventory-fe",
+    "ui:build": "cd inventory-fe && npm install && npm run build",
     "heroku-prebuild": "npm run ui:build",
-    "deploy:heroku": "git push heroku master"
+    "deploy:heroku": "git push heroku herokutest:master"
   },
   "author": "",
   "license": "ISC",
