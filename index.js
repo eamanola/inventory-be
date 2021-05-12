@@ -9,7 +9,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('fe-build')); // Vendoring for heroku, github integration is ...
 app.use(express.static('inventory-fe/build'));
 
 app.get('/category/:category', async (request, response) => {
