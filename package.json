@@ -10,7 +10,7 @@
     "server": "json-server -p3001 --watch db.json",
     "build:ui": "cd inventory-fe && npm install && npm run build",
     "fetch:ui": "git submodule update --recursive --remote && echo 'fe fetched'",
-    "postinstall": "npm run build:ui"
+    "heroku-postbuild": "npm run build:ui"
   },
   "author": "",
   "license": "ISC",
